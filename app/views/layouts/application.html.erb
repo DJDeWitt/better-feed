@@ -1,14 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>BetterFeed</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+
+  <!-- CSS -->
+
+
+  <!-- JS -->
+  <!-- load angular, nganimate, and ui-router -->
+  <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.min.js"></script>
+  <script src="app.js"></script>
+
+
+
 </head>
 <body>
 
-<%= yield %>
+<div class="container-fluid">
+<!-- Header -->
+<div class="row-fluid">
+  <div class="span12">
+  <%= nav_bar brand: "abetterfeed", fixed: :top, responsive: true do %>
+    <%= menu_group do %>
+      <%= menu_item "Home", root_path %>
+      <%= menu_item "About", '/about' %>
+    <% end %>
+    <% if current_user %>
+      <%= menu_group pull: :right do %>
+        <%= menu_item "Log Out", signout_path %>
+      <% end %>
+    <% else %>
+      <%= menu_group pull: :right do %>
+        <%= menu_item "Sign in with Twitter", "/auth/twitter" %>
+      <% end %>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+
+<!-- Body -->
+<div ng-app="myApp">
+<div ng-controller="MainController">
+  <div class="row-fluid" style="margin-top: 64px;">
+      <div class="span9"><%= yield %></div>
+  </div>
+</div>
+</div>
+
+
+<!-- Footer -->
+</div>
 
 </body>
 </html>

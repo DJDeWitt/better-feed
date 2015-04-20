@@ -1,0 +1,65 @@
+<% if current_user %>
+  <% if @description == "" %>
+    <%= render 'criteria_introduction' %>
+  <% else %>
+    <div class="base-container"><div class="inner-container" style="font-size: 24px;"><%= @description %>
+    </div></div>
+    <%= render 'friend_list' %>
+  <% end %>
+<% else %>
+  <div class="base-container" style="background-color: #ff7f00;"><div class="inner-container" style="font-size: 32px; background-color: #ff7f00; color: white;">
+    Welcome to <strong>abetterfeed</strong>
+    <br>
+    <span style="font-size: 16px;">A family of tools to improve your Internet experience.</span>
+  </div></div>
+  <div style="border-radius: 10px; text-align: center; background-color: #444;">
+
+    <div style="border-radius: 10px; width:260px; height: 300px; display: inline-block; vertical-align: text-top; margin: 4px; background-color: #279CFF; box-shadow: 0px 2px 0px #888888">
+      <table>
+        <tr><td><div class="inner-container">
+          <span class="glyphicon glyphicon-user" style="font-size: 64px; padding: 4px; color: blue;"></span>
+        </div></td></tr>
+        <tr><td><div style="color: white; font-size: 32px; margin: 8px;">TweetWizard</div></td></tr>
+        <tr><td><div class="inner-container">Find the right people to follow on Twitter, and help others do the same.</div></td></tr>
+        <tr><td><div style="margin: 4px; padding: 4px;">
+              <%= button_to "Learn More", root_path, :method => :get, :class => 'judge-button' %>
+            </div></td></tr>
+      </table>
+    </div>
+
+    <div style="border-radius: 10px; width:260px; height: 300px; display: inline-block; vertical-align: text-top; margin: 4px; background-color: #279CFF; box-shadow: 0px 2px 0px #888888">
+      <table>
+        <tr><td><div class="inner-container">
+          <span class="glyphicon glyphicon-ok-circle" style="font-size: 64px; padding: 4px; color: blue;"></span>
+        </div></td></tr>
+        <tr><td><div style="color: white; font-size: 32px; margin: 8px;">TweetJudge</div></td></tr>
+        <tr><td><div class="inner-container">Think critically about the people you follow, their tweets, and what you want out of Twitter.</div></td></tr>
+        <tr><td><div style="margin: 4px; padding: 4px;">
+              <%= button_to "Learn More", root_path, :method => :get, :class => 'judge-button' %>
+            </div></td></tr>
+      </table>
+    </div>
+
+    <div style="border-radius: 10px; width:260px; height: 300px; display: inline-block; vertical-align: text-top; margin: 4px; background-color: #279CFF; box-shadow: 0px 2px 0px #888888">
+      <table>
+        <tr><td><div class="inner-container">
+          <span class="glyphicon glyphicon-tree-conifer" style="font-size: 64px; padding: 4px; color: blue;"></span>
+        </div></td></tr>
+        <tr><td><div style="color: white; font-size: 32px; margin: 8px;">TweetGuide</div></td></tr>
+        <tr><td><div class="inner-container">Learn tips and tricks for making the Internet a kinder, more meaningful place.</div></td></tr>
+        <tr><td><div style="margin: 4px; padding: 4px;">
+              <%= button_to "Learn More", root_path, :method => :get, :class => 'judge-button' %>
+            </div></td></tr>
+      </table>
+    </div>
+
+  </div>
+  <div class="base-container" style="background-color: #ff7f00;"><div class="inner-container" style="font-size: 32px; background-color: #ff7f00; color: white;">
+    Why so Twitter?
+    <br>
+    <span style="font-size: 16px;">If the Internet was created to democratize communication, connection, and information-sharing, Twitter is the closest website to making good on that promise. Having limited time, I wanted to focus on a platform that I care about and can make an impact with. That said, <strong>abetterfeed</strong> will continue to work to become platform agnostic and provide tools for all Internet users.</span>
+  </div></div>
+  <div class="base-container">
+  <div class="twitter-sign-in"><%= link_to "Sign in with Twitter to get started!", "/auth/twitter" %></div>
+  </div>
+<% end %>

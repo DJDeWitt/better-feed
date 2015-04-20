@@ -32,6 +32,24 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Bootstrap for responsive design
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
+# gem "bootstrap"
+
+# Twitter Authentification
+gem 'omniauth-twitter'
+
+# Access Twitter
+gem 'twitter'
+
+# Dynamic thorugh Angular
+gem 'angularjs-rails'
+
+# Dynamically change http text into actual links
+gem 'rails_autolink'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

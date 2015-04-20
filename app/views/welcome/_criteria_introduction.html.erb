@@ -1,0 +1,13 @@
+<div class="base-container"><div class="inner-container">
+  <span style="font-size: 32px;">Welcome to <strong>TweetJudge</strong>!</span>
+  <br>
+  <span style="font-size: 32px;">Before we start judging tweets, let’s set down some rules for what makes a tweet valuable.</span>
+  <br>
+  <form class='follow-button' data-remote='true' action='/welcome/description' method= 'post'>
+    <input name='description' type='text' value=<%=@description%>>
+    <input class='twitter-follow-button' type='submit' value='Update Value!'>
+  </form>
+</div></div>
+<div class="base-container"><div class="inner-container" style="font-size: 24px;">
+  <%= @description %>
+</div></div>

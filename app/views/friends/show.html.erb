@@ -1,0 +1,124 @@
+
+<div class="base-container"><div class="inner-container">Let's review @<%= @friend %>'s twenty latest tweets:</div></div>
+
+<div ng-controller="JudgeController">
+
+  <table><tr>
+  <!-- User Info -->
+  <td>
+  <div style="border-radius: 10px; width:260px; display: inline-block; vertical-align: text-top; margin: 4px; background-color: #FFFFFF; box-shadow: 0px 2px 0px #888888">
+    <table>
+      <tr style="margin-top: 10px;">
+        <td width="10%" style="padding-top: 10px;">
+        <!-- Image -->
+        <div class="profile-figure">
+        <%= image_tag(@friend_object.profile_image_uri) %>
+        </div>
+        </td>
+        <!-- Handle and Name -->
+        <td width="90%" colspan="2" style="padding-top: 10px;">
+          <div class="header-figure" style="background: url(<%=@friend_object.profile_banner_uri%>);">
+          <strong style="background-color: White;"><%= link_to "#{@friend_object.name}", friend_path(@friend_object.screen_name), class: "user-header" %></strong>
+          <br>
+          <%= link_to "@#{@friend_object.screen_name}", friend_path(@friend_object.screen_name), class: "user-header" %>
+          </div>
+        </td>
+      </tr>
+      <!-- Description -->
+      <tr>
+        <td colspan="3"><%= auto_link(@friend_object.description) %></td>
+      </tr>
+      <!-- Followers, Following, Tweets -->
+      <tr>
+        <td style="text-align: center;"><strong>Tweets</strong><br><%= @friend_object.tweets_count %></td>
+        <td style="text-align: center;"><strong>Followers</strong><br><%= @friend_object.followers_count %></td>
+        <td style="text-align: center;"><strong>Following</strong><br><%= @friend_object.friends_count %></td>
+      </tr>
+    </table>
+  </div>
+  </td>
+  <!-- Tweet Description -->
+  <td width="90%">
+  <div class="base-container"><div class="inner-container">
+    <span style="font-size: 24px;">This is what you want out of your tweets</span><br>
+    <span style=""><%= @description %></span>
+  </div></div>
+  </td>
+  </tr></table>
+
+  <!-- Listing Tweets To Vote On -->
+  <div class="base-container"><div class="inner-container">Judge these 30 Tweets!</div></div>
+  <div style="border-radius: 10px; text-align: center; background-color: #444;">
+  <%= content_tag "div", id: "products", data: {products: @friend_tweets} do %>
+    <div ng-repeat="tweet in tweets" style="margin: 4px; padding: 4px; border-radius: 5px;">
+      <div class="base-container">
+      <table><tr>
+      <!-- Tweet Number -->
+      <td style="width: 32px;"><span style="padding: 4px; font-size: 16px; background-color: #ff7f00; color: white; border-radius: 20px;">{{$index+1}}</span></td>
+      <!-- Tweet Vote Up -->
+      <td style="width: 48px;"><span ng-class="getUpClass($index)" ng-click="voteUp($index)"><span class="glyphicon glyphicon-thumbs-up" style="font-size: 32px; padding: 4px;"></span></span></td>
+      <!-- Tweet Vote Down -->
+      <td style="width: 48px;"><span ng-class="getDownClass($index)" ng-click="voteDown($index)"><span class="glyphicon glyphicon-thumbs-down" style="font-size: 32px; padding: 4px;"></span></span></td>
+      <!-- Tweet Text -->
+      <td><div class="inner-container"><span style="padding: 4px;"><a ng-href="https://twitter.com/{{tweet.user.screen_name}}/status/{{tweet.id_str}}" target="_blank">
+        {{tweet.text}}</a></span></div>
+        <div class="inner-container" style="background-color: #ff7f00;"><span class="glyphicon glyphicon-star" style="font-size: 16px; color: white;"> {{tweet.favorite_count}}</span>
+        <span class="glyphicon glyphicon-retweet" style="font-size: 16px; color: white;"> {{tweet.retweet_count}}</span></div></td>
+      </tr></table></div>
+    </div>
+  <% end %>
+  </div>
+
+  <!-- Results depending on tweets rated and total score -->
+
+  <div class="base-container">
+  <div ng-if="total < 30">
+    <h4 style="margin: 4px; padding: 4px; border-radius: 5px; background-color: White; text-align: center;">
+      You have rated {{total}} of <%= @friend_tweets.size %> tweets. Rate all the tweets above to see your results!
+    </h4>
+  </div>
+  <div ng-if="total == 30">
+    <div ng-if="score < 15">
+      <table>
+      <tr>
+        <td colspan="2">
+        <div class="inner-container"><h4 style="text-align: center;">Uh oh! <strong>@<%= @friend %></strong> has not passed your judgement. Either give them some advice about what you'd love to see them tweet more about, or unfollow them to clean up your feed.</h4></div>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%"><div class="inner-container" style="text-align: center;">
+        <h5 style="text-align: center;">Give <strong>@<%= @friend %></strong> a <a href="https://vimeo.com/76762772">kind, actionable, specific recommendation</a> to improve their tweets.</h5>
+        <!-- Warn Tweet Button -->
+        <form class='follow-button' data-remote='true' action='/friends/warn' method= 'post'>
+          <input name='screen_name' type='hidden' value=<%=@friend.to_s%>>
+          <input name='original_referer' type='hidden' value='http://platform.twitter.com/widgets/follow_button.df71e9fd75415d2cee8cfded99ebe79f.en.html'>
+          <input class='twitter-follow-button' type='submit' value=<%= "warn @"+@friend %>>
+        </form>
+        </div></td>
+        <td width="50%"><div class="inner-container" style="text-align: center;">
+        <h5 style="text-align: center;">Unfollow <strong>@<%= @friend %></strong> and un-clutter your feed.</h5>
+        <!-- Unfollow Button -->
+        <form class='follow-button' data-remote='true' action='/friends/unfollow' method= 'post'>
+          <input name='screen_name' type='hidden' value=<%=@friend.to_s%>>
+          <input name='original_referer' type='hidden' value='http://platform.twitter.com/widgets/follow_button.df71e9fd75415d2cee8cfded99ebe79f.en.html'>
+          <input class='twitter-follow-button' type='submit' value=<%= "unfollow @"+@friend %>>
+        </form>
+        </div></td>
+      </tr>
+      </table>
+    </div>
+    <div ng-if="score >= 15">
+      <h4 style="background: LightGray; margin: 4px; padding: 4px; border-radius: 5px;">
+        @<%= @friend %> has passed your judgement!
+        <!-- You passed tweet button -->
+        <form class='follow-button' data-remote='true' action='/friends/congratulate' method= 'post'>
+          <input name='screen_name' type='hidden' value=<%=@friend.to_s%>>
+          <input name='original_referer' type='hidden' value='http://platform.twitter.com/widgets/follow_button.df71e9fd75415d2cee8cfded99ebe79f.en.html'>
+          <input class='twitter-follow-button' type='submit' value=<%= "congratulate @"+@friend %>>
+        </form>
+      </h4>
+    </div>
+  </div>
+  </div>
+
+</div>

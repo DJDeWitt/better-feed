@@ -1,0 +1,46 @@
+<!-- Introduction After Sign In -->
+  <div class="base-container"><div class="inner-container">Welcome <%= current_user.name %>!<br><br>Here's a list of twenty people you follow on Twitter. Who would you like to judge first?</div></div>
+  <!-- Twitter Friends -->
+  <div style="border-radius: 10px; text-align: center; background-color: #444;">
+    <% @friends.take(20).each do |friend| %>
+      <div style="border-radius: 10px; width:260px; height: 300px; display: inline-block; vertical-align: text-top; margin: 4px; background-color: #279CFF; box-shadow: 0px 2px 0px #888888">
+        <table>
+          <tr style="margin-top: 10px;">
+            <td width="10%" style="padding-top: 10px;">
+            <!-- Image -->
+            <div class="inner-container" style="width: 52px;">
+            <div class="profile-figure">
+            <%= image_tag(friend.profile_image_uri) %>
+            </div>
+            </div>
+            </td>
+            <!-- Handle and Name -->
+            <td width="90%" colspan="2" style="padding-top: 10px;">
+              <div class="inner-container">
+              <strong style="background-color: White;"><%= link_to "#{friend.name}", friend_path(friend.screen_name), class: "user-header" %></strong>
+              <br>
+              <%= link_to "@#{friend.screen_name}", friend_path(friend.screen_name), class: "user-header" %>
+              </div>
+            </td>
+          </tr>
+          <!-- Description -->
+          <tr>
+            <td colspan="3"><div class="inner-container"><%= auto_link(friend.description) %></div></td>
+          </tr>
+          <!-- Followers, Following, Tweets -->
+          <tr>
+            <td style="text-align: center;"><div class="inner-container"><strong>Tweets</strong><br><%= friend.tweets_count %></div></td>
+            <td style="text-align: center;"><div class="inner-container"><strong>Followers</strong><br><%= friend.followers_count %></div></td>
+            <td style="text-align: center;"><div class="inner-container"><strong>Following</strong><br><%= friend.friends_count %></div></td>
+          </tr>
+          <!-- Judge Button -->
+          <tr>
+            <td colspan="3" style="text-align: center;"><div style="margin: 4px; padding: 4px;">
+              <%= button_to "Judge!", friend_path(friend.screen_name), :method => :get, :class => 'judge-button' %>
+            </div></td>
+          </tr>
+        </table>
+      </div>
+    <% end %>
+  </div>
+  <br>

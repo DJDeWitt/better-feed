@@ -13,3 +13,220 @@
  *= require_tree .
  *= require_self
  */
+
+ /*
+ *= require bootstrap_and_overrides
+ */
+
+/* Navbar CSS */
+
+.navbar-default {
+  background-color: #222;
+  border-bottom: 2px solid #000;
+  color: white;
+}
+
+.navbar-default .navbar-brand{
+  color: #FFF;
+  font-weight: bold;
+}
+
+.navbar-default .navbar-brand:hover{
+  color: #00ffe9;
+}
+
+
+/* Colorization CSS */
+
+body {
+  background-color: #333;
+}
+
+.base-container {
+  background-color: #279CFF;
+  border-radius: 10px;
+  /*display: inline-block;*/
+  /*vertical-align: text-top;*/
+  margin: 4px;
+  padding: 4px;
+  box-shadow: 0px 2px 0px #888888;
+}
+
+.inner-container {
+  background-color: white;
+  margin: 4px;
+  padding: 2px;
+  border-radius: 5px;
+  width: auto;
+}
+
+/* Landing Page - Sign In With Twitter */
+.twitter-sign-in {
+  background-color: White;
+  border: 2px solid DarkGray;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px;
+}
+.twitter-sign-in a{
+  color: Blue;
+}
+
+.twitter-sign-in:hover {
+  color: White;
+  background-color: Blue;
+}
+.twitter-sign-in a:hover{
+  color: White;
+}
+
+
+.profile-figure{
+    width:48px;
+    height:48px;
+    border-radius:10px;
+    overflow:hidden;
+}
+.header-figure{
+/*    width:90px;
+    height:48px;*/
+    border-radius:10px;
+    overflow:hidden;
+}
+
+/* Judge Button */
+.judge-button {
+  border-radius: 28px;
+  box-shadow: 0px 2px 0px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #ff7700;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  border: 0px solid black;
+}
+.judge-button:hover {
+  background: #FFFFFF;
+  color: #ff7700;
+  text-decoration: none;
+  box-shadow: 0px -2px 0px #666666;
+}
+
+
+.btn {
+
+}
+
+.btn:hover {
+
+}
+
+
+a.twitter-auth-button, .twitter-follow-button {
+  display: inline-block;
+  padding: 1px 6px 0 28px;
+  border: #ccc solid 1px;
+  border-radius: 3px;
+  background: #f8f8f8 url(//platform.twitter.com/images/bird.png) 2px 3px no-repeat;
+  background: url(//platform.twitter.com/images/bird.png) 2px 3px no-repeat,
+              -webkit-linear-gradient(#fff, #dedede);
+  background: url(//platform.twitter.com/images/bird.png) 2px 3px no-repeat,
+              linear-gradient(#fff, #dedede);
+  background-size: 22px 19px, auto auto;
+  font: bold 18px/24px Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  color: #333;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+  white-space: nowrap;
+}
+a.twitter-auth-button:hover, .twitter-follow-button:hover {
+  color: #4c4c4c;
+  background: #f8f8f8 url(//platform.twitter.com/images/bird.png) 2px 3px no-repeat;
+  background: url(//platform.twitter.com/images/bird.png) 2px 3px no-repeat,
+              -webkit-linear-gradient(#fff, #f2f2f2);
+  background: url(//platform.twitter.com/images/bird.png) 2px 3px no-repeat,
+              linear-gradient(#fff, #f2f2f2);
+  background-size: 22px 19px, auto auto;
+}
+.twitter-follow-button {
+  margin: 0 6px 0 10px;
+  text-decoration: none;
+  height: 26px;
+  font-size: 14px;
+}
+
+
+#user-header a:link{ color:white; }
+#user-header a:visited{ color:#330033; }
+#user-header a:hover{ color:#942A5F; }
+#user-header a:active{ color:#6FB25C; }
+
+/* ANGULAR TUTORIAL STUFF BELOW */
+
+.tweet-vote-up {
+  background: White;
+  color: Green;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: 200;
+  box-shadow: 0 2px 0px rgba(0,0,0,0.5);
+}
+
+.tweet-vote-down {
+  background: White;
+  color: Red;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: 200;
+  box-shadow: 0 2px 0px rgba(0,0,0,0.5);
+}
+
+.tweet-vote-up:hover {
+  color: White;
+  background: rgba(90, 246, 91, .5);
+}
+
+.tweet-vote-down:hover {
+  color: White;
+  background: rgba(246, 90, 91, .5);
+}
+
+/* Voted Class*/
+.tweet-voted-up {
+  background: rgba(90, 246, 91, .5);
+  color: White;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: 200;
+}
+
+.tweet-voted-down {
+  background: Red;
+  color: White;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: 200;
+}
+
+.tweet-voted-up:hover {
+  color: White;
+  background: rgba(47, 127, 47, 1);
+}
+
+.tweet-voted-down:hover {
+  color: White;
+  background: rgba(127, 47, 47, 1);
+}

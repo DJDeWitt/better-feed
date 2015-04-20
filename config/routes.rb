@@ -1,4 +1,38 @@
 Rails.application.routes.draw do
+
+
+  # get "/resources/show" => "resources#show"
+  # # OmniAuth and Authentification
+  # get "/auth/:provider/callback" => "sessions#create"
+  # get "/signout" => "sessions#destroy", :as => :signout
+  # post "/users/follow" => "users#follow", :as => :follow
+
+  match "/auth/:provider/callback" => "sessions#create", via: [:get, :post]
+  match "/signout" => "sessions#destroy", :as => :signout, via: [:get, :post]
+
+  root 'welcome#index'
+
+  get '/landing' => 'welcome#index'
+  get '/about' => 'welcome#about'
+
+  get '/approve' => 'welcome#approve'
+  get '/deny' => 'welcome#deny'
+
+  # Following, Unfollowing, Congratulating, Warning
+  post "/friends/unfollow" => "friends#unfollow", :as => :unfollow
+  post "/friends/follow" => "friends#follow", :as => :follow
+
+  post "/friends/congratulate" => "friends#congratulate", :as => :congratulate
+  post "/friends/warn" => "friends#warn", :as => :warn
+
+  get '/friends/:id', to: 'friends#show', as: 'friend'
+
+  # Update Description
+  post "/welcome/description" => "welcome#description", :as => :description
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
